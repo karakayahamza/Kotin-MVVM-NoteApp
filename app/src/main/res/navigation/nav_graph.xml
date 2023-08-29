@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/mainScreen"
+        android:name="com.example.noteapp.ui.fragments.MainScreen"
+        android:label="fragment_main_screen"
+        tools:layout="@layout/fragment_main_screen" >
+        <action
+            android:id="@+id/action_mainScreen_to_noteEditScreen"
+            app:destination="@id/noteEditScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/noteEditScreen"
+        android:name="com.example.noteapp.ui.fragments.NoteEditScreen"
+        android:label="fragment_note_edit_screen"
+        tools:layout="@layout/fragment_note_edit_screen" >
+        <action
+            android:id="@+id/action_noteEditScreen_to_mainScreen"
+            app:destination="@id/mainScreen"
+            app:popUpTo="@id/noteEditScreen"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="note"
+            app:argType="com.example.noteapp.model.NoteModel"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.noteapp.ui.splashScreen.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_mainScreen"
+            app:destination="@id/mainScreen" />
+    </fragment>
+</navigation>

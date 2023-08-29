@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.fragments.NoteEditScreen">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="UselessParent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+        <ImageButton
+            android:id="@+id/back_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_revert"
+            android:backgroundTint="#00000000"
+            />
+
+        </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_rcyclerview_item_background"
+        android:layout_margin="5dp"
+        android:padding="10dp"
+        android:backgroundTint="@color/appColor"
+        >
+            <EditText
+                android:id="@+id/noteTitle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="  Başlık"
+                android:importantForAutofill="no"
+                android:maxLength="30"
+                android:singleLine="true"
+                android:inputType="text"
+                tools:ignore="HardcodedText,TextFields,VisualLintTextFieldSize,TouchTargetSizeCheck" />
+    </LinearLayout>
+
+        <EditText
+            android:id="@+id/noteText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="start"
+            android:hint="@string/app_name"
+            android:textColorHint="@color/appColor"
+            android:importantForAutofill="no"
+            android:padding="10dp"
+            tools:ignore="HardcodedText,TextFields,VisualLintTextFieldSize" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/saveButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="end|bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/custom_rcyclerview_item_background"
+        android:backgroundTint="@color/appColor"
+        android:importantForAccessibility="no"
+        android:scaleType="center"
+        android:src="@android:drawable/ic_menu_save"
+        app:borderWidth="0dp"/>
+
+</RelativeLayout>

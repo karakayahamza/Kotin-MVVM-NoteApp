@@ -43,6 +43,7 @@
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:hint="  Başlık"
+                android:textColorHint="@color/white"
                 android:importantForAutofill="no"
                 android:maxLength="30"
                 android:singleLine="true"

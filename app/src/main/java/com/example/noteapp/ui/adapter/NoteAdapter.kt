@@ -7,10 +7,16 @@ import com.example.noteapp.ui.listeners.NoteClickListener
 import com.example.noteapp.databinding.RecyclerRowNoteBinding
 import com.example.noteapp.model.NoteModel
 import java.util.*
+import kotlin.collections.ArrayList
 
-class NoteAdapter(private val noteModelArrayList: ArrayList<NoteModel>) : RecyclerView.Adapter<NoteAdapter.NoteHolder>() {
+class NoteAdapter(private var noteModelArrayList: ArrayList<NoteModel>) : RecyclerView.Adapter<NoteAdapter.NoteHolder>() {
     private var longClickListener: NoteClickListener? = null
     private var noteClickListener: NoteClickListener? = null
+
+
+    fun setFilteredList(filteredList : ArrayList<NoteModel>){
+        this.noteModelArrayList = filteredList
+    }
 
     fun setOnNoteClickListener(listener: NoteClickListener) {
         noteClickListener = listener

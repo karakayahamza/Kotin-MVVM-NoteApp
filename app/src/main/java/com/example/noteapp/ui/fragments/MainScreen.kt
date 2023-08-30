@@ -1,11 +1,16 @@
 package com.example.noteapp.ui.fragments
 
 import android.annotation.SuppressLint
+import android.content.ClipData.Item
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Note
+import android.text.method.TextKeyListener.clear
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,6 +44,38 @@ class MainScreen : Fragment() {
         setupAddButton()
         setupNoteItemClickListeners()
         setupNoteItemLongClickListeners()
+
+
+        binding.searchView.clearFocus()
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterList(newText)
+                return true
+            }
+        })
+
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun filterList(newText: String?) {
+        val filteredList = ArrayList<NoteModel>()
+        for (item in note){
+            if (item.title.lowercase().contains(newText!!.lowercase())){
+                filteredList.add(item)
+            }
+        }
+        if (filteredList.isEmpty()){
+            Toast.makeText(requireContext(),"Veri bulunamadı.",Toast.LENGTH_SHORT).show()
+        }
+        else{
+            noteAdapter.setFilteredList(filteredList)
+            noteAdapter.notifyDataSetChanged()
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")

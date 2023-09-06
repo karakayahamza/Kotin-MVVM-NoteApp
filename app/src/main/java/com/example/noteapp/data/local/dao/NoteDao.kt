@@ -8,6 +8,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.noteapp.model.NoteModel
 
+
 @Dao
 interface NoteDao {
     @Query("SELECT * FROM notes")
@@ -18,4 +19,7 @@ interface NoteDao {
 
     @Delete
     fun delete(note: NoteModel)
+
+    /*@Update
+    fun updateNotes(notes: List<Note?>?)*/
 }

@@ -27,5 +27,21 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
         fun delete(note: NoteModel) = viewModelScope.launch(Dispatchers.IO) {
                 repository.delete(note)
         }
+
+        /*fun updatePosition(noteArrayList: ArrayList<NoteModel>)= viewModelScope.launch(Dispatchers.IO) {
+                repository.updatePosition(noteArrayList)
+
+                try {
+                        // Notları sıra numarasına göre güncellemek için bir döngü oluşturun
+                        for ((index, note) in noteArrayList.withIndex()) {
+                                // Her notun sıra numarasını güncelleyin
+                                note.id = index.toLong()
+                        }
+                        // Güncellenmiş notları Room veritabanına kaydedin
+                        repository.updatePosition(noteArrayList)
+                } catch (e: Exception) {
+                // Hata işleme kodunu burada ekleyin
+                }
+        }*/
 }
 

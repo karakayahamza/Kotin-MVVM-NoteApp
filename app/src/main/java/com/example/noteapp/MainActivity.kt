@@ -1,11 +1,12 @@
 package com.example.noteapp
 
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.navigation.fragment.NavHostFragment
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.example.noteapp.databinding.ActivityMainBinding
 
-    class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
         private lateinit var binding: ActivityMainBinding
         override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

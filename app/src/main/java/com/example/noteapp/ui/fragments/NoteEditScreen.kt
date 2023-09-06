@@ -1,20 +1,25 @@
 package com.example.noteapp.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import com.example.noteapp.R
 import com.example.noteapp.databinding.FragmentNoteEditScreenBinding
 import com.example.noteapp.model.NoteModel
 import com.example.noteapp.viewModel.NoteViewModel
-import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.Date
 import java.util.Locale
+
 
 class NoteEditScreen : Fragment() {
 
@@ -22,6 +27,7 @@ class NoteEditScreen : Fragment() {
     private val binding get() = _binding!!
     private lateinit var noteViewModel: NoteViewModel
     private var note: NoteModel? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,12 +50,8 @@ class NoteEditScreen : Fragment() {
             }
         }
 
-        binding.saveButton.setOnClickListener {
-            saveNote()
-            navigateBackToMainScreen()
-            onDestroy()
-        }
         binding.backHome.setOnClickListener {
+            saveNote()
             navigateBackToMainScreen()
         }
     }
@@ -78,14 +80,5 @@ class NoteEditScreen : Fragment() {
     private fun navigateBackToMainScreen() {
         val action = NoteEditScreenDirections.actionNoteEditScreenToMainScreen()
         Navigation.findNavController(requireView()).navigate(action)
-
-        // Delete NoteEditScreen
-        /**
-        Navigation.findNavController(requireView()).navigate(action,NavOptions.Builder()
-        .setPopUpTo(R.id.noteEditScreen,true)
-        .build()
-        )*/
-        // Or you can do it in navigation xml pop up behavior inclusive and itself
-
     }
 }

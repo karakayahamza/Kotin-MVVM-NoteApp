@@ -14,4 +14,8 @@ class NoteRepository(private val noteDao: NoteDao) {
     fun delete(note: NoteModel) {
         noteDao.delete(note)
     }
+
+    /*fun updatePosition(notes: List<NoteModel>){
+        noteDao.updateNotes(notes)
+    }*/
 }

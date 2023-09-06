@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.noteapp.ui.listeners.NoteClickListener
 import com.example.noteapp.databinding.RecyclerRowNoteBinding
 import com.example.noteapp.model.NoteModel
-import java.util.*
 import kotlin.collections.ArrayList
 
 class NoteAdapter(private var noteModelArrayList: ArrayList<NoteModel>) : RecyclerView.Adapter<NoteAdapter.NoteHolder>() {
@@ -56,6 +55,7 @@ class NoteAdapter(private var noteModelArrayList: ArrayList<NoteModel>) : Recycl
     override fun onBindViewHolder(holder: NoteHolder, position: Int) {
         holder.binding.noteDate.text = noteModelArrayList[position].date
         holder.binding.noteTitle.text = noteModelArrayList[position].title
+
     }
 
     override fun getItemCount(): Int {

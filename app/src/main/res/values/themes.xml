@@ -1,21 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.NoteApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
-
-    <style name="NoActionBarStyle" parent="Theme.Design.Light.NoActionBar">
+    <style name="NoActionBarStyle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsTranslucent">true</item>
-    </style>
-    
-    
-    <style name="searchViewSettings">
-        <item name="android:textColorHint">#CEFFFFFF</item>
-        
+        <item name="android:searchViewStyle">@style/searchViewSettings</item>
     </style>
 
-    <style name="Theme.NoteApp" parent="Base.Theme.NoteApp" />
+
+    <style name="searchViewSettings">
+        <item name="android:textColorHint">#CEFFFFFF</item>
+        <item name="android:editTextColor">#CEFFFFFF</item>
+        <item name="searchHintIcon">@null</item>
+    </style>
+
+
 </resources>

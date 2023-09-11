@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -76,9 +77,17 @@ class NoteEditScreen : Fragment() {
 
         noteViewModel.insertOrUpdate(note!!)
     }
-
     private fun navigateBackToMainScreen() {
         val action = NoteEditScreenDirections.actionNoteEditScreenToMainScreen()
         Navigation.findNavController(requireView()).navigate(action)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            saveNote()
+            navigateBackToMainScreen()
+        }
     }
 }

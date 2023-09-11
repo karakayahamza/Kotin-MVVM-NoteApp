@@ -55,6 +55,7 @@
          android:layout_height="wrap_content"
          android:text="@string/add_new_note"
          android:textSize="15sp"
+         android:textColor="@color/white"
          />
     </LinearLayout>
 

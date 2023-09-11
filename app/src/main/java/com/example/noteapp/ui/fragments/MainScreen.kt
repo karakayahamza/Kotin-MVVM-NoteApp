@@ -17,6 +17,8 @@ import com.example.noteapp.databinding.FragmentMainScreenBinding
 import com.example.noteapp.model.NoteModel
 import com.example.noteapp.util.CustomAlertDialog
 import com.example.noteapp.viewModel.NoteViewModel
+import java.text.Normalizer
+import java.util.regex.Pattern
 
 class MainScreen : Fragment() {
 
@@ -32,7 +34,6 @@ class MainScreen : Fragment() {
     ): View {
         binding = FragmentMainScreenBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -61,15 +62,16 @@ class MainScreen : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     private fun filterList(newText: String?) {
         val filteredList = ArrayList<NoteModel>()
-        for (item in note){
-            if (item.title.lowercase().contains(newText!!.lowercase())){
+        val normalizedText = normalizeText(newText)
+        for (item in note) {
+            val normalizedTitle = normalizeText(item.title)
+            if (normalizedTitle.contains(normalizedText)) {
                 filteredList.add(item)
             }
         }
-        if (filteredList.isEmpty()){
-            Toast.makeText(requireContext(),"Not bulunamadı.",Toast.LENGTH_SHORT).show()
-        }
-        else{
+        if (filteredList.isEmpty()) {
+            Toast.makeText(requireContext(), "Not bulunamadı.", Toast.LENGTH_SHORT).show()
+        } else {
             noteAdapter.setFilteredList(filteredList)
             noteAdapter.notifyDataSetChanged()
         }
@@ -119,16 +121,23 @@ class MainScreen : Fragment() {
         noteAdapter.setOnNoteLongClickListener(object : NoteClickListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onNoteClickListener(position: Int) {
-                val customDialog = CustomAlertDialog(requireContext()){
-                    val noteToDelete = noteModelArrayList[position]
-                    noteViewModel.delete(noteToDelete)
-                    noteModelArrayList.removeAt(position)
-                    noteAdapter.notifyItemRemoved(position)
-                    checkRecyclerView(noteModelArrayList)
-                }
+                val customDialog = CustomAlertDialog(requireContext(),
+                    onOkButtonClickListener = {
+                        val noteToDelete = noteModelArrayList[position]
+                        noteViewModel.delete(noteToDelete)
+                        noteModelArrayList.removeAt(position)
+                        noteAdapter.notifyItemRemoved(position)
+                        checkRecyclerView(noteModelArrayList)
+                        Toast.makeText(requireContext(),"Not silindi.",Toast.LENGTH_SHORT).show()
+                    })
                 customDialog.showDialog("Bu notu silmek istiyor musunuz?")
-            }
-        })
+        } })
+    }
+    private fun normalizeText(input: String?): String {
+        if (input == null) return ""
+        val normalizedString = Normalizer.normalize(input, Normalizer.Form.NFD)
+        val pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+")
+        return pattern.matcher(normalizedString).replaceAll("").uppercase()
     }
 
     fun checkRecyclerView(notes : ArrayList<NoteModel>){

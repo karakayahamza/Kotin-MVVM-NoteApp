@@ -19,7 +19,4 @@ interface NoteDao {
 
     @Delete
     fun delete(note: NoteModel)
-
-    /*@Update
-    fun updateNotes(notes: List<Note?>?)*/
 }

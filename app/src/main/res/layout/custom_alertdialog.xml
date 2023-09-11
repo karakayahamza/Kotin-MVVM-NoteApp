@@ -15,7 +15,7 @@
         android:gravity="center"
         android:textSize="20dp"
         android:backgroundTint="#75526BA2"
-        android:textColor="#75526BA2"
+        android:textColor="@color/appColor"
         android:layout_marginTop="10dp"
         android:layout_margin="10dp"
         />
@@ -35,7 +35,7 @@
             android:layout_weight="1"
             android:background="@drawable/custom_recyclerview_item_background"
             android:text="EVET"
-            android:textColor="#75526BA2"
+            android:textColor="@color/appColor"
             android:layout_margin="5dp"
             />
 
@@ -45,7 +45,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="HAYIR"
-            android:textColor="#75526BA2"
+            android:textColor="@color/appColor"
             android:background="@drawable/custom_recyclerview_item_background"
             android:layout_margin="5dp"
             />
